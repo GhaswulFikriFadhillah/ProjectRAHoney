@@ -1,5 +1,15 @@
 <?php
 
-use App\Livewire\Form;
+use Illuminate\Support\Facades\Route;
 
-\Illuminate\Support\Facades\Route::get('form', Form::class);
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/about', function () {
+    return view('about',['nama' => 'Ghaswul']);
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
