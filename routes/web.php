@@ -1,5 +1,7 @@
 <?php
 
-use App\Livewire\Form;
+use Illuminate\Support\Facades\Route;
 
-\Illuminate\Support\Facades\Route::get('form', Form::class);
+Route::get('/', function () {
+    return view('welcome');
+});
