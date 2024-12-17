@@ -4,41 +4,39 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title"><i class="mdi mdi-clipboard-list-outline"></i> Daftar Pesanan</h4>
-            <a href="{{ route('orders.create') }}" class="btn btn-primary mb-3">
-                <i class="mdi mdi-plus"></i> Tambah Pesanan
+            <h4 class="card-title"><i class="mdi mdi-cube-outline"></i> Daftar Produk</h4>
+            <a href="{{ route('products.create') }}" class="btn btn-primary mb-3">
+                <i class="mdi mdi-plus"></i> Tambah Produk
             </a>
             <div class="table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nama Pelanggan</th>
-                            <th>Produk</th>
-                            <th>Status</th>
-                            <th>Nomor Resi</th>
+                            <th>Nama Produk</th>
+                            <th>Deskripsi</th>
+                            <th>Harga</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($orders as $order)
+                        @foreach ($products as $product)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $order->customer_name }}</td>
-                            <td>{{ $order->product->name }}</td>
-                            <td>{{ $order->orderStatus->name }}</td>
-                            <td>{{ $order->tracking_number }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>{{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>
-                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-info btn-sm">
+                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm">
                                     <i class="mdi mdi-eye"></i> Detail
                                 </a>
-                                <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-warning btn-sm">
+                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-sm">
                                     <i class="mdi mdi-pencil"></i> Edit
                                 </a>
-                                <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
+                                <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Hapus pesanan ini?')">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Hapus produk ini?')">
                                         <i class="mdi mdi-delete"></i> Hapus
                                     </button>
                                 </form>

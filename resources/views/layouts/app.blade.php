@@ -318,26 +318,44 @@
             </div>
             <!-- partial -->
             <!-- partial:partials/_sidebar.html -->
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/orders">
-                            <i class="icon-grid menu-icon"></i>
-                            <span class="menu-title">Order</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="container-fluid page-body-wrapper">
+                <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                                <i class="mdi mdi-grid"></i>
+                                <span class="menu-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('orders.index') }}">
+                                <i class="mdi mdi-clipboard-list"></i>
+                                <span class="menu-title">Orders</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('products.index') }}">
+                                <i class="mdi mdi-cube"></i>
+                                <span class="menu-title">Products</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('orderstatus.index') }}">
+                                <i class="mdi mdi-clipboard-check"></i>
+                                <span class="menu-title">Order Status</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('ratings.index') }}">
+                                <i class="mdi mdi-star"></i>
+                                <span class="menu-title">Ratings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-
                     @yield('content')
                 </div>
             </div>
