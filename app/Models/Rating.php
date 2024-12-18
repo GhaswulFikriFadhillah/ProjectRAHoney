@@ -6,9 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rating extends Model
 {
-    public function order()
-{
-    return $this->belongsTo(Order::class);
-}
+    protected $fillable = [
+        'order_id',
+        'stars',
+        'comment',
+    ];
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
