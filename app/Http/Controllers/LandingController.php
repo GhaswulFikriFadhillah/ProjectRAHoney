@@ -4,48 +4,38 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Order;
-use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
 {
-    // Menampilkan produk unggulan di halaman utama
+    // Halaman utama Landing Page
     public function index()
     {
-        $products = Product::latest()->take(5)->get(); // Menampilkan 5 produk terbaru
-        return view('landing.home.index', compact('products'));
+        return view('landing.home.index');
     }
 
-    // Menampilkan daftar produk di halaman publik
-    public function products()
+    // Daftar semua produk untuk Landing Page
+    public function productIndex()
     {
-        $products = Product::all();
+        $products = Product::all(); // Mengambil semua produk
         return view('landing.products.index', compact('products'));
     }
 
-    // Menampilkan detail produk di halaman publik
-    public function showProduct(Product $product)
+    // Detail produk berdasarkan ID
+    public function productShow(Product $product)
     {
         return view('landing.products.show', compact('product'));
     }
 
-    // Halaman untuk melacak status pesanan
+    // Halaman pelacakan pesanan
     public function trackOrder()
     {
         return view('landing.orders.track');
     }
 
-    // Menyimpan rating untuk produk
-    public function storeRating(Request $request)
+    // Halaman untuk memberi rating
+    public function createRating()
     {
-        $validated = $request->validate([
-            'order_id' => 'required|exists:orders,id',
-            'stars' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string',
-        ]);
-
-        Rating::create($validated);
-
-        return redirect()->route('landing.products.index');
+        return view('landing.ratings.create');
     }
 }

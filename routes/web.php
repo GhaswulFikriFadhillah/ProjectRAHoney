@@ -25,7 +25,7 @@ Route::prefix('landing')->name('landing.')->group(function () {
 
     // Rute untuk produk
     Route::prefix('products')->name('products.')->group(function () {
-        Route::get('/', [LandingController::class, 'productIndex'])->name('index');
+        Route::get('/', [LandingController::class, 'productShow'])->name('show');
         Route::get('{product}', [LandingController::class, 'productShow'])->name('show');
     });
 
