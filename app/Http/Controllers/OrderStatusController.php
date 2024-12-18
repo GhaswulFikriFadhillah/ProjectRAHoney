@@ -8,18 +8,21 @@ use Illuminate\Http\Request;
 
 class OrderStatusController extends Controller
 {
+    // Menampilkan semua status pesanan
     public function index()
     {
         $statuses = OrderStatus::all();
-        return view('order-status.index', compact('statuses'));
+        return view('admin.order-status.index', compact('statuses'));
     }
 
+    // Menampilkan form untuk membuat status pesanan baru
     public function create()
     {
         $orders = Order::all();
-        return view('order-status.create', compact('orders'));
+        return view('admin.order-status.create', compact('orders'));
     }
 
+    // Menyimpan status pesanan baru
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -29,20 +32,17 @@ class OrderStatusController extends Controller
 
         OrderStatus::create($validated);
 
-        return redirect()->route('order-status.index');
+        return redirect()->route('admin.order-status.index')->with('success', 'Status updated successfully!');
     }
 
-    public function show(OrderStatus $status)
-    {
-        return view('order-status.show', compact('status'));
-    }
-
+    // Menampilkan form untuk mengedit status pesanan
     public function edit(OrderStatus $status)
     {
         $orders = Order::all();
-        return view('order-status.edit', compact('status', 'orders'));
+        return view('admin.order-status.edit', compact('status', 'orders'));
     }
 
+    // Memperbarui status pesanan
     public function update(Request $request, OrderStatus $status)
     {
         $validated = $request->validate([
@@ -52,13 +52,13 @@ class OrderStatusController extends Controller
 
         $status->update($validated);
 
-        return redirect()->route('order-status.index');
+        return redirect()->route('admin.order-status.index')->with('success', 'Status updated successfully!');
     }
 
+    // Menghapus status pesanan
     public function destroy(OrderStatus $status)
     {
         $status->delete();
-        return redirect()->route('order-status.index');
+        return redirect()->route('admin.order-status.index')->with('success', 'Status deleted successfully!');
     }
 }
-

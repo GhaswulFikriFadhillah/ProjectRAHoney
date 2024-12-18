@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    // Admin: Menampilkan semua produk
+    // Menampilkan semua produk
     public function index()
     {
         $products = Product::all();
-        return view('admin.products.index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
-    // Admin: Tambah produk
+    // Menampilkan form untuk membuat produk baru
     public function create()
     {
-        return view('admin.products.create');
+        return view('products.create');
     }
 
-    // Admin: Simpan produk
+    // Menyimpan produk baru
     public function store(Request $request)
     {
         $request->validate([
@@ -29,14 +29,43 @@ class ProductController extends Controller
             'price' => 'required|numeric',
         ]);
 
-        Product::create($request->all());
+        Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success', 'Product added successfully!');
     }
 
-    // Landing Page: Daftar produk
-    public function show(Product $product)
+    // Menampilkan form untuk mengedit produk
+    public function edit(Product $product)
     {
-        return view('landingpage.products.show', compact('product'));
+        return view('products.edit', compact('product'));
+    }
+
+    // Memperbarui produk
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required',
+            'price' => 'required|numeric',
+        ]);
+
+        $product->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+    }
+
+    // Menghapus produk
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully!');
     }
 }
