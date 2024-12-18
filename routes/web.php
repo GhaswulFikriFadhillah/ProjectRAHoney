@@ -5,9 +5,21 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\DashboardController;
 
-Route::resource('products', ProductController::class);
-Route::resource('orders', OrderController::class);
-Route::resource('order-status', OrderStatusController::class);
-Route::resource('ratings', RatingController::class);
+//Admin Route
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::resource('dashboard', DashboardController::class);
+    Route::resource('products', ProductController::class);
+    Route::resource('orders', OrderController::class);
+    Route::resource('orderstatus', OrderStatusController::class);
+    Route::resource('ratings', RatingController::class);
+});
+
+//Landingpage Route
+Route::prefix('landingpage')->group(function () {
+    Route::resource('products', ProductController::class)->only(['index', 'show']);
+    Route::resource('ratings', RatingController::class)->only(['create', 'store']);
+});
+
 

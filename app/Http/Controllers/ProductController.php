@@ -7,57 +7,36 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // Admin: Menampilkan semua produk
     public function index()
     {
         $products = Product::all();
-        return view('products.index', compact('products'));
+        return view('admin.products.index', compact('products'));
     }
 
+    // Admin: Tambah produk
     public function create()
     {
-        return view('products.create');
+        return view('admin.products.create');
     }
 
+    // Admin: Simpan produk
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            'description' => 'required',
             'price' => 'required|numeric',
         ]);
-        
-        Product::create($validated);
-        
+
+        Product::create($request->all());
+
         return redirect()->route('products.index');
     }
 
+    // Landing Page: Daftar produk
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
-    }
-
-    public function edit(Product $product)
-    {
-        return view('products.edit', compact('product'));
-    }
-
-    public function update(Request $request, Product $product)
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'required|numeric',
-        ]);
-
-        $product->update($validated);
-
-        return redirect()->route('products.index');
-    }
-
-    public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect()->route('products.index');
+        return view('landingpage.products.show', compact('product'));
     }
 }
-
