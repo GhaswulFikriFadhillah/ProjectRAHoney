@@ -10,7 +10,7 @@
       <div class="card bg-info text-white">
         <div class="card-body">
           <h5>Total Produk</h5>
-          <p>{{ $totalProducts }}</p>
+          {{-- <p>{{ $totalProducts }}</p> --}}
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
       <div class="card bg-success text-white">
         <div class="card-body">
           <h5>Total Pesanan</h5>
-          <p>{{ $totalOrders }}</p>
+          {{-- <p>{{ $totalOrders }}</p> --}}
         </div>
       </div>
     </div>
