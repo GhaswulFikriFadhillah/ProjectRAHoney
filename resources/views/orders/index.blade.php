@@ -8,14 +8,15 @@
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-
+        <div class="table-responsive">
+          <table class="table table-striped table-borderless">
         <table class="table">
             <thead>
                 <tr>
                     <th>Customer Name</th>
                     <th>Product</th>
                     <th>Tracking Number</th>
-                    <th>Status</th>
+                    {{-- <th>Status</th> --}}
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -25,7 +26,7 @@
                         <td>{{ $order->customer_name }}</td>
                         <td>{{ $order->product->name }}</td>
                         <td>{{ $order->tracking_number }}</td>
-                        <td>{{ $order->status->name ?? 'Pending' }}</td>
+                        {{-- <td>{{ $order->status->name ?? 'Pending' }}</td> --}}
                         <td>
                             <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-warning btn-sm">Edit</a>
                             <form action="{{ route('orders.destroy', $order->id) }}" method="POST" style="display:inline;">
@@ -33,7 +34,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                             </form>
-                            <a href="{{ route('orders-status.edit', $order->status->id ?? 0) }}" class="btn btn-info btn-sm">Manage Status</a>
+                            {{-- <a href="{{ route('orders-status.edit', $order->status->id ?? 0) }}" class="btn btn-info btn-sm">Manage Status</a> --}}
                         </td>
                     </tr>
                 @endforeach

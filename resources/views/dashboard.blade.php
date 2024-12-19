@@ -5,7 +5,25 @@
     <h6 class="font-weight-normal mb-0">All systems are running smoothly!</h6>
 
     <!-- Tabel Produk -->
-    <div class="row mt-4">
+    <div class="row">
+        <div class="col-md-6 mb-6 stretch-card transparent">
+            <div class="card card-tale">
+                <div class="card-body">
+                    <p class="mb-4">Today’s Bookings</p>
+                    <p class="fs-30 mb-2">4006</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-6 stretch-card transparent">
+            <div class="card card-dark-blue">
+                <div class="card-body">
+                    <p class="mb-4">Total Bookings</p>
+                    <p class="fs-30 mb-2">61344</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
@@ -13,7 +31,7 @@
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
-                                <tr>    
+                                <tr>
                                     <th>Name</th>
                                     <th>Description</th>
                                     <th>Price</th>
