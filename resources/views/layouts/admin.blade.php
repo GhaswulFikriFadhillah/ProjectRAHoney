@@ -61,14 +61,16 @@
                                 <i class="ti-settings text-primary"></i>
                                 Settings
                             </a>
-                            <a class="dropdown-item">
+                            <a class="dropdown-item" href="{{ asset('/login') }}" action="{{ route('logout') }}">
+                                @csrf
                                 <i class="ti-power-off text-primary"></i>
                                 Logout
                             </a>
                         </div>
                     </li>
                     <li class="nav-item nav-settings d-none d-lg-flex">
-                        <a class="nav-link" href="{{ asset('skydash/#') }}">
+                        <a class="nav-link" >
+                            
                             <i class="icon-ellipsis"></i>
                         </a>
                     </li>
@@ -85,7 +87,7 @@
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ asset('#') }}">
+                        <a class="nav-link" href="{{ asset('dashboard') }}">
                             <i class="icon-grid menu-icon"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
@@ -97,7 +99,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ asset('skydash/#') }}">
+                        <a class="nav-link" href="{{ asset('/orders') }}">
                             <i class="icon-grid-2 menu-icon"></i>
                             <span class="menu-title">Data Pemesanan</span>
                         </a>

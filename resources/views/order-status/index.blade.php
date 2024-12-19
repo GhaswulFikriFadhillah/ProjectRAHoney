@@ -17,7 +17,7 @@
           <tr>
             <td>{{ $status->name }}</td>
             <td>
-              <a href="{{ route('admin.order-status.edit', $status->id) }}" class="btn btn-warning">Edit</a>
+              <a href="{{ route('orders-status.edit', $status->id) }}" class="btn btn-warning">Edit</a>
             </td>
           </tr>
           @endforeach

@@ -12,14 +12,14 @@ class OrderStatusController extends Controller
     public function index()
     {
         $statuses = OrderStatus::all();
-        return view('admin.order-status.index', compact('statuses'));
+        return view('orders-status.index', compact('statuses'));
     }
 
     // Menampilkan form untuk membuat status pesanan baru
     public function create()
     {
         $orders = Order::all();
-        return view('admin.order-status.create', compact('orders'));
+        return view('orders-status.create', compact('orders'));
     }
 
     // Menyimpan status pesanan baru
@@ -32,14 +32,14 @@ class OrderStatusController extends Controller
 
         OrderStatus::create($validated);
 
-        return redirect()->route('admin.order-status.index')->with('success', 'Status updated successfully!');
+        return redirect()->route('orders-status.index')->with('success', 'Status updated successfully!');
     }
 
     // Menampilkan form untuk mengedit status pesanan
     public function edit(OrderStatus $status)
     {
         $orders = Order::all();
-        return view('admin.order-status.edit', compact('status', 'orders'));
+        return view('orders-status.edit', compact('status', 'orders'));
     }
 
     // Memperbarui status pesanan
@@ -52,13 +52,13 @@ class OrderStatusController extends Controller
 
         $status->update($validated);
 
-        return redirect()->route('admin.order-status.index')->with('success', 'Status updated successfully!');
+        return redirect()->route('orders-status.index')->with('success', 'Status updated successfully!');
     }
 
     // Menghapus status pesanan
     public function destroy(OrderStatus $status)
     {
         $status->delete();
-        return redirect()->route('admin.order-status.index')->with('success', 'Status deleted successfully!');
+        return redirect()->route('orders-status.index')->with('success', 'Status deleted successfully!');
     }
 }

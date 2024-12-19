@@ -12,14 +12,14 @@ class OrderController extends Controller
     public function index()
     {
         $orders = Order::with('product')->get();
-        return view('admin.orders.index', compact('orders'));
+        return view('orders.index', compact('orders'));
     }
 
     // Menampilkan form untuk membuat pesanan baru
     public function create()
     {
         $products = Product::all();
-        return view('admin.orders.create', compact('products'));
+        return view('orders.create', compact('products'));
     }
 
     // Menyimpan pesanan baru
@@ -39,14 +39,14 @@ class OrderController extends Controller
             'tracking_number' => $request->tracking_number,
         ]);
 
-        return redirect()->route('admin.orders.index')->with('success', 'Order created successfully!');
+        return redirect()->route('orders.index')->with('success', 'Order created successfully!');
     }
 
     // Menampilkan form untuk mengedit pesanan
     public function edit(Order $order)
     {
         $products = Product::all();
-        return view('admin.orders.edit', compact('order', 'products'));
+        return view('orders.edit', compact('order', 'products'));
     }
 
     // Memperbarui pesanan yang ada
@@ -66,13 +66,26 @@ class OrderController extends Controller
             'tracking_number' => $request->tracking_number,
         ]);
 
-        return redirect()->route('admin.orders.index')->with('success', 'Order updated successfully!');
+        return redirect()->route('orders.index')->with('success', 'Order updated successfully!');
     }
+    public function trackOrder(Request $request)
+    {
+        $trackingNumber = $request->input('tracking_number');
+        $trackingStatus = "Dalam Proses"; // Contoh status
+        $trackingDetails = "Pesanan Anda sedang diproses di gudang.";
+    
+        return view('landing.tracking.index', [
+            'trackingNumber' => $trackingNumber,
+            'trackingStatus' => $trackingStatus,
+            'trackingDetails' => $trackingDetails,
+        ]);
+    }
+    
 
     // Menghapus pesanan
     public function destroy(Order $order)
     {
         $order->delete();
-        return redirect()->route('admin.orders.index')->with('success', 'Order deleted successfully!');
+        return redirect()->route('orders.index')->with('success', 'Order deleted successfully!');
     }
 }
