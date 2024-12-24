@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\Order;
 use Illuminate\Http\Request;
 
 class LandingController extends Controller
@@ -22,20 +21,9 @@ class LandingController extends Controller
     }
 
     // Detail produk berdasarkan ID
-    public function productShow(Product $product)
+    public function productShow($id)
     {
+        $product = Product::findOrFail($id); // Mengambil produk berdasarkan ID
         return view('landing.products.show', compact('product'));
-    }
-
-    // Halaman pelacakan pesanan
-    public function trackOrder()
-    {
-        return view('landing.orders.track');
-    }
-
-    // Halaman untuk memberi rating
-    public function createRating()
-    {
-        return view('landing.ratings.create');
     }
 }

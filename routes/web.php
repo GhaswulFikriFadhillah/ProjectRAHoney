@@ -31,9 +31,9 @@ Route::prefix('landing')->name('landing.')->group(function () {
 
     // Rute untuk produk
     Route::prefix('products')->name('products.')->group(function () {
-        Route::get('/', [LandingController::class, 'productShow'])->name('show');
-        Route::get('{product}', [LandingController::class, 'productShow'])->name('show');
-    });
+        Route::get('/', [LandingController::class, 'productIndex'])->name('index'); // Daftar produk
+        Route::get('{id}', [LandingController::class, 'productShow'])->name('show'); // Detail produk
+    });    
 
     // Rute untuk pelacakan pesanan
     Route::prefix('orders')->name('orders.')->group(function () {
@@ -42,6 +42,7 @@ Route::prefix('landing')->name('landing.')->group(function () {
 
     // Rute untuk memberi rating
     Route::prefix('ratings')->name('ratings.')->group(function () {
-        Route::get('create', [LandingController::class, 'createRating'])->name('create');
+        Route::get('create', [RatingController::class, 'create'])->name('create'); // Form pembuatan rating
+        Route::post('/', [RatingController::class, 'store'])->name('store');       // Proses penyimpanan rating
     });
 });

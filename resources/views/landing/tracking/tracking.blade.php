@@ -9,7 +9,7 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form action="{{ route('orders.tracking') }}" method="GET" class="form-group d-flex">
+                <form action="{{ route('landing.tracking') }}" method="GET" class="form-group d-flex">
                     <input type="text" name="tracking_number" class="form-control me-2" placeholder="Nomor Pelacakan" required>
                     <button type="submit" class="btn btn-primary">Lacak</button>
                 </form>

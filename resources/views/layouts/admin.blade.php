@@ -68,12 +68,6 @@
                             </a>
                         </div>
                     </li>
-                    <li class="nav-item nav-settings d-none d-lg-flex">
-                        <a class="nav-link" >
-                            
-                            <i class="icon-ellipsis"></i>
-                        </a>
-                    </li>
                 </ul>
                 <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
                     data-toggle="offcanvas">
@@ -105,7 +99,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ asset('skydash/#') }}">
+                        <a class="nav-link" href="{{ asset('/ratings') }}">
                             <i class="icon-paper menu-icon"></i>
                             <span class="menu-title">Rating Feedback</span>
                         </a>

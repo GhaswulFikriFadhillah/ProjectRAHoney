@@ -11,7 +11,7 @@
           <img src="{{ asset('skydash/images/logo.svg')}}" alt="logo">
         </div>
         <h4>Hello! Let's get started</h4>
-        <h6 class="font-weight-light">Sign in to continue.</h6>
+        <h6 class="font-weight-light" ><a href="{{ asset('/landing') }}">Click here to landingpage</a></h6>
         <form method="POST" action="{{ route('login') }}" class="pt-3">
           @csrf
           <div class="form-group">
