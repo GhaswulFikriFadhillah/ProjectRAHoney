@@ -45,6 +45,9 @@
                                     <a class="nav-link" href="/landing">Home</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="/products/index">Product</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="/tracking">Tracking</a>
                                 </li>
                                 <li class="nav-item">
@@ -52,7 +55,6 @@
                                 </li>
                             </ul>
                         </div>
-               
                     </div>
                 </div>
             </div>
@@ -60,6 +62,44 @@
     </nav>
 
     <main>
+        <div class="container-fluid">
+            <div class="card">
+                
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Product</th>
+                                    <th>Tracking Number</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($orders as $order)
+                                    <tr>
+                                        <td>{{ $order->id }}</td>
+                                        <td>{{ $order->customer_name }}</td>
+                                        <td>{{ $order->product->name }}</td>
+                                        <td>{{ $order->tracking_number }}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="{{ route('orders.show', $order) }}" class="btn btn-info btn-sm">View</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">No orders found</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
         @yield('content')
     </main>
 
@@ -84,7 +124,10 @@
                                 <a href="/landing">Home</a>
                             </li>
                             <li class="menu-item">
-                                <a href="/tracking">Tracking</a>
+                                <a href="products.index">Product</a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="tracking.index">Tracking</a>
                             </li>
                             <li class="menu-item">
                                 <a href="/login">Login</a>

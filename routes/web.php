@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TrackingController;
 
 // Auth Routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -19,10 +19,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('dashboard', AdminController::class);
     Route::resource('products', ProductController::class);
     Route::resource('orders', OrderController::class);
-    Route::resource('order-status', OrderStatusController::class);
     Route::resource('ratings', RatingController::class);
+    Route::resource('tracking', TrackingController::class);
 });
 
+Route::get('/orders/track', [OrderController::class, 'track'])->name('orders.track');
+Route::post('/orders/track', [OrderController::class, 'track'])->name('orders.track.post');
 
 // Landing Page Routes
 Route::prefix('landing')->name('landing.')->group(function () {

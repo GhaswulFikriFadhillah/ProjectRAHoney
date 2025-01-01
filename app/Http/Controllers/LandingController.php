@@ -13,17 +13,19 @@ class LandingController extends Controller
         return view('landing.home.index');
     }
 
-    // Daftar semua produk untuk Landing Page
-    public function productIndex()
-    {
-        $products = Product::all(); // Mengambil semua produk
-        return view('landing.products.index', compact('products'));
-    }
+    // // Daftar semua produk untuk Landing Page
+    // public function productIndex()
+    // {
+    //     $products = Product::all(); // Mengambil semua produk
+    //     return view('landing.products.index', compact('products'));
+    // }
 
-    // Detail produk berdasarkan ID
-    public function productShow($id)
-    {
-        $product = Product::findOrFail($id); // Mengambil produk berdasarkan ID
-        return view('landing.products.show', compact('product'));
-    }
+    // // Detail produk berdasarkan ID
+    // public function productShow($id)
+    // {
+    //     $product = Product::findOrFail($id); // Mengambil produk berdasarkan ID
+    //     return view('landing.products.show', compact('product'));
+    // }
+
+    
 }
