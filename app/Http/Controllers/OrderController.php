@@ -134,4 +134,22 @@ class OrderController extends Controller
         // Tampilkan halaman kosong untuk tracking
         return view('orders.track');
     }
+    public function destroy(Order $order)
+{
+    DB::beginTransaction();
+    try {
+        // Hapus status dari tabel `order_status`
+        DB::table('order_status')->where('id', $order->id)->delete();
+
+        // Hapus order dari tabel `orders`
+        $order->delete();
+
+        DB::commit();
+        return redirect()->route('orders.index')->with('success', 'Order deleted successfully!');
+    } catch (\Exception $e) {
+        DB::rollback();
+        return back()->with('error', 'Failed to delete order. ' . $e->getMessage());
+    }
+}
+
 }
