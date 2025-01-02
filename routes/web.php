@@ -20,9 +20,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('orders', OrderController::class);
     Route::resource('ratings', RatingController::class);
-    Route::resource('tracking', TrackingController::class);
 });
 
+Route::resource('tracking', TrackingController::class);
 Route::get('/orders/track', [OrderController::class, 'track'])->name('orders.track');
 Route::post('/orders/track', [OrderController::class, 'track'])->name('orders.track.post');
 
